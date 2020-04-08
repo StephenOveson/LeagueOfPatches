@@ -222,7 +222,7 @@ const Home = () => {
                         <div className="row no-gutters">
                             <div className="col-md-2">
                                 <img
-                                    src={'http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/' + champ.key + '.png'}
+                                    src={'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/' + champ.key + '.png'}
                                     className="card-img" alt={champ.name} />
                             </div>
                             <div className="col-md-10">
