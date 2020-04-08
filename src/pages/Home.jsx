@@ -19,7 +19,7 @@ const Home = () => {
         }).then((data) => {
             $.ajax({
                 method: 'GET',
-                url: 'http://ddragon.leagueoflegends.com/cdn/' + data[0] + '/data/en_US/champion.json'
+                url: 'https://ddragon.leagueoflegends.com/cdn/' + data[0] + '/data/en_US/champion.json'
             }).then(({ data }) => {
                 let arr = []
                 for (let champ in data) {
@@ -30,7 +30,7 @@ const Home = () => {
 
             $.ajax({
                 method: 'GET',
-                url: 'http://ddragon.leagueoflegends.com/cdn/' + data[1] + '/data/en_US/champion.json'
+                url: 'https://ddragon.leagueoflegends.com/cdn/' + data[1] + '/data/en_US/champion.json'
             }).then(({ data }) => {
                 let arr = []
                 for (let champ in data) {
@@ -41,7 +41,7 @@ const Home = () => {
 
             $.ajax({
                 method: 'GET',
-                url: 'http://ddragon.leagueoflegends.com/cdn/' + data[2] + '/data/en_US/champion.json'
+                url: 'https://ddragon.leagueoflegends.com/cdn/' + data[2] + '/data/en_US/champion.json'
             }).then(({ data }) => {
                 let arr = []
                 for (let champ in data) {
@@ -52,7 +52,7 @@ const Home = () => {
 
             $.ajax({
                 method: 'GET',
-                url: 'http://ddragon.leagueoflegends.com/cdn/' + data[3] + '/data/en_US/champion.json'
+                url: 'https://ddragon.leagueoflegends.com/cdn/' + data[3] + '/data/en_US/champion.json'
             }).then(({ data }) => {
                 let arr = []
                 for (let champ in data) {
@@ -63,7 +63,7 @@ const Home = () => {
 
             $.ajax({
                 method: 'GET',
-                url: 'http://ddragon.leagueoflegends.com/cdn/' + data[4] + '/data/en_US/champion.json'
+                url: 'https://ddragon.leagueoflegends.com/cdn/' + data[4] + '/data/en_US/champion.json'
             }).then(({ data }) => {
                 let arr = []
                 for (let champ in data) {
@@ -74,7 +74,7 @@ const Home = () => {
 
             $.ajax({
                 method: 'GET',
-                url: 'http://ddragon.leagueoflegends.com/cdn/' + data[5] + '/data/en_US/champion.json'
+                url: 'https://ddragon.leagueoflegends.com/cdn/' + data[5] + '/data/en_US/champion.json'
             }).then(({ data }) => {
                 let arr = []
                 for (let champ in data) {
