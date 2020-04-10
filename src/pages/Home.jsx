@@ -85,7 +85,7 @@ const Home = () => {
         })
     }, [])
 
-    // useEffect(() => console.log(current), [current])
+    useEffect(() => console.log(current), [current])
     // useEffect(() => console.log(patchOne), [patchOne])
     // useEffect(() => console.log(patchTwo), [patchTwo])
     // useEffect(() => console.log(patchThree), [patchThree])
