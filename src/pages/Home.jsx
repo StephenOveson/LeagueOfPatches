@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import $ from 'jquery'
+import './Home.css'
 
 const Home = () => {
     const [current, setCurrent] = useState([])
@@ -85,15 +86,16 @@ const Home = () => {
         })
     }, [])
 
-    useEffect(() => console.log(current), [current])
+    // useEffect(() => console.log(current), [current])
     // useEffect(() => console.log(patchOne), [patchOne])
     // useEffect(() => console.log(patchTwo), [patchTwo])
     // useEffect(() => console.log(patchThree), [patchThree])
     // useEffect(() => console.log(patchFour), [patchFour])
-    // useEffect(() => console.log(patchFive), [patchFive])
+    useEffect(() => console.log(patchFive), [patchFive])
+    useEffect(() => console.log(changes), [changes])
     // useEffect(() => console.log(buffsNerfs), [buffsNerfs])
 
-    useEffect(() => comparePatches(), [patchOne])
+    useEffect(() => comparePatches(), [patchFive])
 
     useEffect(() => {
         setBuffsNerfs(changes.filter(champ =>
@@ -129,8 +131,29 @@ const Home = () => {
         patchOne.map(champ => {
             if (!patchOneNotes[champ.name]) patchOneNotes[champ.name] = champ.stats
         })
+        const patchTwoNotes = {}
+        patchTwo.map(champ => {
+            if (!patchTwoNotes[champ.name]) patchTwoNotes[champ.name] = champ.stats
+        })
+        const patchThreeNotes = {}
+        patchThree.map(champ => {
+            if (!patchThreeNotes[champ.name]) patchThreeNotes[champ.name] = champ.stats
+        })
+        const patchFourNotes = {}
+        patchFour.map(champ => {
+            if (!patchFourNotes[champ.name]) patchFourNotes[champ.name] = champ.stats
+        })
+        const patchFiveNotes = {}
+        patchFive.map(champ => {
+            if (!patchFiveNotes[champ.name]) patchFiveNotes[champ.name] = champ.stats
+        })
         const arrCurrent = Object.entries(currentPatch)
         const arrPatchOne = Object.entries(patchOneNotes)
+        const arrPatchTwo = Object.entries(patchTwoNotes)
+        const arrPatchThree = Object.entries(patchThreeNotes)
+        const arrPatchFour = Object.entries(patchFourNotes)
+        const arrPatchFive = Object.entries(patchFiveNotes)
+
         const changeObj = {}
 
         if (currentPatch !== patchOneNotes) {
@@ -199,6 +222,7 @@ const Home = () => {
                         }
                         if (value.attackspeed !== oldValue.attackspeed) {
                             changeObj[key] = { ...changeObj[key], attackspeed: value.attackspeed - oldValue.attackspeed }
+
                         }
                     }
                 }
@@ -212,18 +236,18 @@ const Home = () => {
 
     return (
         <>
-            <nav className="navbar navbar-dark bg-primary mb-3">
+            <nav className="navbar navbar-dark mb-3 navNeu">
                 <a className="navbar-brand" href="#">League of Patches</a>
             </nav>
             {current && current.map(champ =>
                 <div className="row" key={champ.key}>
                     <div className="col-md-1"></div>
-                    <div className="card mb-3 col-md-10">
+                    <div className="card mb-3 neu col-md-10">
                         <div className="row no-gutters">
                             <div className="col-md-2">
                                 <img
                                     src={'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/' + champ.key + '.png'}
-                                    className="card-img" alt={champ.name} />
+                                    className="card-img radius" alt={champ.name} />
                             </div>
                             <div className="col-md-10">
                                 <div className="card-body">
@@ -247,34 +271,34 @@ const Home = () => {
                                                     <div className="progress-bar bg-secondary" style={{ width: champ.info.difficulty * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.attack} aria-valuemin="0" aria-valuemax="10">Difficulty</div>
                                                 </div>
                                             </div>
-                                            <p className="card-text"><small className="text-muted" value={champ.tags.join(' ')}>{champ.tags.join(', ')}</small></p>
+                                            <p className="card-text"><small className="" value={champ.tags.join(' ')}>{champ.tags.join(', ')}</small></p>
                                         </div>
                                         <div className="col-md-7">
                                             <div className="row">
                                                 <div className="col-md-6">
-                                                    <ul className="list-group">
-                                                        <li className="list-group-item">{`HP: ${champ.stats.hp}`}</li>
-                                                        <li className="list-group-item">{`HP/Level: ${champ.stats.hpperlevel}`}</li>
-                                                        <li className="list-group-item">{`MP: ${champ.stats.mp}`}</li>
-                                                        <li className="list-group-item">{`MP/Level: ${champ.stats.mpperlevel}`}</li>
-                                                        <li className="list-group-item">{`MP Regen: ${champ.stats.mpregen}`}</li>
-                                                        <li className="list-group-item">{`MP Regen/Level: ${champ.stats.mpregenperlevel}`}</li>
-                                                        <li className="list-group-item">{`Armor: ${champ.stats.armor}`}</li>
-                                                        <li className="list-group-item">{`Armor/Level: ${champ.stats.armorperlevel}`}</li>
-                                                        <li className="list-group-item">{`MR: ${champ.stats.spellblock}`}</li>
+                                                    <ul className="list-group ">
+                                                        <li className="list-group-item neuLess">{`HP: ${champ.stats.hp}`}</li>
+                                                        <li className="list-group-item neuLess">{`HP/Level: ${champ.stats.hpperlevel}`}</li>
+                                                        <li className="list-group-item neuLess">{`MP: ${champ.stats.mp}`}</li>
+                                                        <li className="list-group-item neuLess">{`MP/Level: ${champ.stats.mpperlevel}`}</li>
+                                                        <li className="list-group-item neuLess">{`MP Regen: ${champ.stats.mpregen}`}</li>
+                                                        <li className="list-group-item neuLess">{`MP Regen/Level: ${champ.stats.mpregenperlevel}`}</li>
+                                                        <li className="list-group-item neuLess">{`Armor: ${champ.stats.armor}`}</li>
+                                                        <li className="list-group-item neuLess">{`Armor/Level: ${champ.stats.armorperlevel}`}</li>
+                                                        <li className="list-group-item neuLess">{`MR: ${champ.stats.spellblock}`}</li>
                                                     </ul>
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <ul className="list-group">
-                                                        <li className="list-group-item">{`MR/Level: ${champ.stats.spellblockperlevel}`}</li>
-                                                        <li className="list-group-item">{`MS: ${champ.stats.movespeed}`}</li>
-                                                        <li className="list-group-item">{`Attack Range: ${champ.stats.attackrange}`}</li>
-                                                        <li className="list-group-item">{`Crit: ${champ.stats.crit}`}</li>
-                                                        <li className="list-group-item">{`Crit/Level: ${champ.stats.critperlevel}`}</li>
-                                                        <li className="list-group-item">{`AD: ${champ.stats.attackdamage}`}</li>
-                                                        <li className="list-group-item">{`AD/Level: ${champ.stats.attackdamageperlevel}`}</li>
-                                                        <li className="list-group-item">{`AS: ${champ.stats.attackspeed}`}</li>
-                                                        <li className="list-group-item">{`AS/Level: ${champ.stats.attackspeedperlevel}`}</li>
+                                                    <ul className="list-group ">
+                                                        <li className="list-group-item neuLess">{`MR/Level: ${champ.stats.spellblockperlevel}`}</li>
+                                                        <li className="list-group-item neuLess">{`MS: ${champ.stats.movespeed}`}</li>
+                                                        <li className="list-group-item neuLess">{`Attack Range: ${champ.stats.attackrange}`}</li>
+                                                        <li className="list-group-item neuLess">{`Crit: ${champ.stats.crit}`}</li>
+                                                        <li className="list-group-item neuLess">{`Crit/Level: ${champ.stats.critperlevel}`}</li>
+                                                        <li className="list-group-item neuLess">{`AD: ${champ.stats.attackdamage}`}</li>
+                                                        <li className="list-group-item neuLess">{`AD/Level: ${champ.stats.attackdamageperlevel}`}</li>
+                                                        <li className="list-group-item neuLess">{`AS: ${champ.stats.attackspeed}`}</li>
+                                                        <li className="list-group-item neuLess">{`AS/Level: ${champ.stats.attackspeedperlevel}`}</li>
                                                     </ul>
                                                 </div>
                                             </div>

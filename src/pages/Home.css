@@ -1,0 +1,41 @@
+body {
+    background: #313131;
+}
+
+div {
+    color: white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: white;
+}
+
+.black {
+    color: black;
+}
+
+.radius {
+    border-radius: 10px;
+}
+
+.neu {
+    border-radius: 10px;
+    background: #313131;
+    box-shadow: inset -14px -14px 28px #1e1e1e, 
+                inset 14px 14px 28px #444444;
+}
+
+.neuLess {
+    border-radius: 4px;
+    background: linear-gradient(315deg, #343434, #2c2c2c);
+    box-shadow:  -7px -7px 16px #191919, 
+                 7px 7px 16px #4a4a4a;  
+}
+
+.navNeu {
+    border-radius: 4px;
+    background: #313131;
+    box-shadow:  -7px -7px 16px #191919, 
+                 7px 7px 16px #4a4a4a;
+    
+}
