@@ -265,22 +265,17 @@ const Home = () => {
             </nav>
 
             <div className="container m-auto">
-                <div class="input-group mb-3">
+                <div class="input-group mb-3 neu">
                     <div class="input-group-prepend">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon1" onClick={currentSetter}>Reset Champions</button>
+                        <button class="btn button-neu" type="button" id="button-addon1" onClick={currentSetter}>Reset Champions</button>
                     </div>
-                    <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" onChange={filterChampions}/>
+                    <input type="text" class="form-control" placeholder="Search A Champion" aria-label="Example text with button addon" aria-describedby="button-addon1" onChange={filterChampions}/>
                 </div>
                 <div className="row m-auto">
                     {current && current.map(champ =>
                         <>
                             <div className="card col-md-6 col-sm-12 background m-auto" key={champ.key}>
                                 <div className="row no-gutters">
-                                    {/* <div className="col-md-2">
-                                        <img
-                                            src={'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/' + champ.key + '.png'}
-                                            className="card-img radius" alt={champ.name} />
-                                    </div> */}
                                     <div className="col-md-12">
                                         <div className="card-body">
                                             <div className="row">
@@ -292,17 +287,7 @@ const Home = () => {
                                                 <div className="col-md-6">
                                                     <h4 className="card-title">{champ.name}</h4>
                                                     <h5 className="card-subtitle mb-2 text-muted">{champ.title}</h5>
-                                                </div>
-                                                <div className="row mb-3">
-                                                    <div className="col-md-12">
-                                                        <p className="card-text">{champ.blurb}</p>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div className="row">
-
-                                                <div className="container col-md-5 mb-3">
+                                                    <p className="card-text"><small className="" value={champ.tags.join(' ')}>{champ.tags.join(', ')}</small></p>
                                                     <div className="row">
                                                         <div className="progress mb-1 col-md-12">
                                                             <div className="progress-bar bg-danger" style={{ width: champ.info.attack * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.attack} aria-valuemin="0" aria-valuemax="10">Attack</div>
@@ -317,7 +302,18 @@ const Home = () => {
                                                             <div className="progress-bar bg-secondary" style={{ width: champ.info.difficulty * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.attack} aria-valuemin="0" aria-valuemax="10">Difficulty</div>
                                                         </div>
                                                     </div>
-                                                    <p className="card-text"><small className="" value={champ.tags.join(' ')}>{champ.tags.join(', ')}</small></p>
+                                                </div>
+                                                <div className="row mb-3">
+                                                    <div className="col-md-12">
+                                                        <p className="card-text">{champ.blurb}</p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div className="row mb-3">
+
+                                                <div className="container col-md-5 mb-3">
+
                                                 </div>
                                                 <div className="col-md-5">
                                                     <button className="btn btn-lg btn-block button-neu"
