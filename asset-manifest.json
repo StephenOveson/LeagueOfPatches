@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/LeagueOfPatches/static/css/main.c8953361.chunk.css",
-    "main.js": "/LeagueOfPatches/static/js/main.e08ecab5.chunk.js",
-    "main.js.map": "/LeagueOfPatches/static/js/main.e08ecab5.chunk.js.map",
+    "main.js": "/LeagueOfPatches/static/js/main.88c2ee04.chunk.js",
+    "main.js.map": "/LeagueOfPatches/static/js/main.88c2ee04.chunk.js.map",
     "runtime-main.js": "/LeagueOfPatches/static/js/runtime-main.17674161.js",
     "runtime-main.js.map": "/LeagueOfPatches/static/js/runtime-main.17674161.js.map",
     "static/js/2.4d16bf3e.chunk.js": "/LeagueOfPatches/static/js/2.4d16bf3e.chunk.js",
     "static/js/2.4d16bf3e.chunk.js.map": "/LeagueOfPatches/static/js/2.4d16bf3e.chunk.js.map",
     "index.html": "/LeagueOfPatches/index.html",
-    "precache-manifest.175e6eda2712b0284b5f369e146dcd01.js": "/LeagueOfPatches/precache-manifest.175e6eda2712b0284b5f369e146dcd01.js",
+    "precache-manifest.8b8071467db9c2d59b90bc8e3fc9e0e9.js": "/LeagueOfPatches/precache-manifest.8b8071467db9c2d59b90bc8e3fc9e0e9.js",
     "service-worker.js": "/LeagueOfPatches/service-worker.js",
     "static/css/main.c8953361.chunk.css.map": "/LeagueOfPatches/static/css/main.c8953361.chunk.css.map",
     "static/js/2.4d16bf3e.chunk.js.LICENSE.txt": "/LeagueOfPatches/static/js/2.4d16bf3e.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.17674161.js",
     "static/js/2.4d16bf3e.chunk.js",
     "static/css/main.c8953361.chunk.css",
-    "static/js/main.e08ecab5.chunk.js"
+    "static/js/main.88c2ee04.chunk.js"
   ]
 }
