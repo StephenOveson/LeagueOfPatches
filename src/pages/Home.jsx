@@ -232,48 +232,51 @@ const Home = () => {
         setChanges(changedArr)
     }
 
-
-
     return (
         <>
             <nav className="navbar navbar-dark mb-3 navNeu">
                 <a className="navbar-brand" href="#">League of Patches</a>
             </nav>
-            {current && current.map(champ =>
-                <div className="row" key={champ.key}>
-                    <div className="col-md-1"></div>
-                    <div className="card mb-3 neu col-md-10">
-                        <div className="row no-gutters">
-                            <div className="col-md-2">
-                                <img
-                                    src={'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/' + champ.key + '.png'}
-                                    className="card-img radius" alt={champ.name} />
-                            </div>
-                            <div className="col-md-10">
-                                <div className="card-body">
-                                    <h4 className="card-title">{champ.name}</h4>
-                                    <h5 className="card-subtitle mb-2 text-muted">{champ.title}</h5>
-                                    <p className="card-text">{champ.blurb}</p>
-                                    <div className="row">
+            <div className="row">
+                {current && current.map(champ =>
+                    <>
+                        <div className="card neu col-md-6 col-sm-12" key={champ.key}>
+                            <div className="row no-gutters">
+                                <div className="col-md-2">
+                                    <img
+                                        src={'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/' + champ.key + '.png'}
+                                        className="card-img radius" alt={champ.name} />
+                                </div>
+                                <div className="col-md-10">
+                                    <div className="card-body">
+                                        <h4 className="card-title">{champ.name}</h4>
+                                        <h5 className="card-subtitle mb-2 text-muted">{champ.title}</h5>
+                                        <p className="card-text">{champ.blurb}</p>
+                                        <div className="row">
 
-                                        <div className="col-md-5">
-                                            <div className="row">
-                                                <div className="progress mb-1 col-md-12">
-                                                    <div className="progress-bar bg-danger" style={{ width: champ.info.attack * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.attack} aria-valuemin="0" aria-valuemax="10">Attack</div>
+                                            <div className="col-md-5 mb-3">
+                                                <div className="row">
+                                                    <div className="progress mb-1 col-md-12">
+                                                        <div className="progress-bar bg-danger" style={{ width: champ.info.attack * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.attack} aria-valuemin="0" aria-valuemax="10">Attack</div>
+                                                    </div>
+                                                    <div className="progress mb-1 col-md-12">
+                                                        <div className="progress-bar bg-success" style={{ width: champ.info.defense * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.attack} aria-valuemin="0" aria-valuemax="10">Defense</div>
+                                                    </div>
+                                                    <div className="progress mb-1 col-md-12">
+                                                        <div className="progress-bar bg-primary" style={{ width: champ.info.magic * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.attack} aria-valuemin="0" aria-valuemax="10">Magic</div>
+                                                    </div>
+                                                    <div className="progress mb-1 col-md-12">
+                                                        <div className="progress-bar bg-secondary" style={{ width: champ.info.difficulty * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.attack} aria-valuemin="0" aria-valuemax="10">Difficulty</div>
+                                                    </div>
                                                 </div>
-                                                <div className="progress mb-1 col-md-12">
-                                                    <div className="progress-bar bg-success" style={{ width: champ.info.defense * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.attack} aria-valuemin="0" aria-valuemax="10">Defense</div>
-                                                </div>
-                                                <div className="progress mb-1 col-md-12">
-                                                    <div className="progress-bar bg-primary" style={{ width: champ.info.magic * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.attack} aria-valuemin="0" aria-valuemax="10">Magic</div>
-                                                </div>
-                                                <div className="progress mb-1 col-md-12">
-                                                    <div className="progress-bar bg-secondary" style={{ width: champ.info.difficulty * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.attack} aria-valuemin="0" aria-valuemax="10">Difficulty</div>
-                                                </div>
+                                                <p className="card-text"><small className="" value={champ.tags.join(' ')}>{champ.tags.join(', ')}</small></p>
                                             </div>
-                                            <p className="card-text"><small className="" value={champ.tags.join(' ')}>{champ.tags.join(', ')}</small></p>
+                                            <div className="col-md-5">
+                                                <button className="btn btn-lg btn-block button-neu" 
+                                                onClick={() =>  $('#' + champ.key).hasClass('hidden') ? $('#' + champ.key).removeClass('hidden') : $('#' + champ.key).addClass('hidden')}>Stats</button>
+                                            </div>
                                         </div>
-                                        <div className="col-md-7">
+                                        <div className="col-md-12 hidden" id={champ.key}>
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <ul className="list-group ">
@@ -303,42 +306,40 @@ const Home = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
+                                    </div>
+                                    {buffsNerfs && buffsNerfs.map(change =>
+                                        champ.name === change[0] ?
+                                            <div className="row">
+                                                <h3>Changes from previous patch</h3>
+                                                <div className="col-md-12 alert-success">
+                                                    <ul>
+                                                        {change[1].hp && <li>HP: {change[1].hp}</li>}
+                                                        {change[1].hpperlevel && <li>HP Per Level: {change[1].hpperlevel}</li>}
+                                                        {change[1].mp && <li>MP: {change[1].mp}</li>}
+                                                        {change[1].mpperlevel && <li>MP Per Level: {change[1].mpperlevel}</li>}
+                                                        {change[1].mpregen && <li>MP Regen: {change[1].mpregen}</li>}
+                                                        {change[1].mpregenperlevel && <li>MP Regen Per Level: {change[1].mpregenperlevel}</li>}
+                                                        {change[1].armor && <li>Armor: {change[1].armor}</li>}
+                                                        {change[1].armorperlevel && <li>Armor Per Level: {change[1].armorperlevel}</li>}
+                                                        {change[1].spellblock && <li>Spell Block: {change[1].spellblock}</li>}
+                                                        {change[1].spellblockperlevel && <li>Spell Block Per Level: {change[1].spellblockperlevel}</li>}
+                                                        {change[1].movespeed && <li>Move Speed: {change[1].movespeed}</li>}
+                                                        {change[1].attackrange && <li>Attack Range {change[1].attackrange}</li>}
+                                                        {change[1].attackdamage && <li>Attack Damage: {change[1].attackdamage}</li>}
+                                                        {change[1].attackdamageperlevel && <li>Attack Damage Per Level: {change[1].attackdamageperlevel}</li>}
+                                                        {change[1].attackspeed && <li>Attack Speed: {change[1].attackspeed}</li>}
+                                                        {change[1].attackspeedperlevel && <li>Attack Speed Per Level: {change[1].attackspeedperlevel}</li>}
+                                                    </ul>
+                                                </div>
+                                            </div> : null
+                                    )}
                                 </div>
-                                {buffsNerfs.map(change =>
-                                    champ.name === change[0] ?
-                                        <div className="row">
-                                            <h3>Changes from previous patch</h3>
-                                            <div className="col-md-12 alert-success">
-                                                <ul>
-                                                    {change[1].hp && <li>HP: {change[1].hp}</li>}
-                                                    {change[1].hpperlevel && <li>HP Per Level: {change[1].hpperlevel}</li>}
-                                                    {change[1].mp && <li>MP: {change[1].mp}</li>}
-                                                    {change[1].mpperlevel && <li>MP Per Level: {change[1].mpperlevel}</li>}
-                                                    {change[1].mpregen && <li>MP Regen: {change[1].mpregen}</li>}
-                                                    {change[1].mpregenperlevel && <li>MP Regen Per Level: {change[1].mpregenperlevel}</li>}
-                                                    {change[1].armor && <li>Armor: {change[1].armor}</li>}
-                                                    {change[1].armorperlevel && <li>Armor Per Level: {change[1].armorperlevel}</li>}
-                                                    {change[1].spellblock && <li>Spell Block: {change[1].spellblock}</li>}
-                                                    {change[1].spellblockperlevel && <li>Spell Block Per Level: {change[1].spellblockperlevel}</li>}
-                                                    {change[1].movespeed && <li>Move Speed: {change[1].movespeed}</li>}
-                                                    {change[1].attackrange && <li>Attack Range {change[1].attackrange}</li>}
-                                                    {change[1].attackdamage && <li>Attack Damage: {change[1].attackdamage}</li>}
-                                                    {change[1].attackdamageperlevel && <li>Attack Damage Per Level: {change[1].attackdamageperlevel}</li>}
-                                                    {change[1].attackspeed && <li>Attack Speed: {change[1].attackspeed}</li>}
-                                                    {change[1].attackspeedperlevel && <li>Attack Speed Per Level: {change[1].attackspeedperlevel}</li>}
-                                                </ul>
-                                            </div>
-                                        </div> : null
-                                )}
                             </div>
                         </div>
-                    </div>
-                </div>
-            )
-
-            }
+                    </>
+                )}
+            </div>
         </>
     )
 }

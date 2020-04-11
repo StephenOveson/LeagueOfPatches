@@ -39,3 +39,19 @@ h1, h2, h3, h4, h5, h6 {
                  7px 7px 16px #4a4a4a;
     
 }
+
+.button-neu {
+    border-radius: 10px;
+    background: linear-gradient(145deg, #343434, #2c2c2c);
+    box-shadow:  8px 8px 16px #272727, 
+                 -8px -8px 16px #3b3b3b;
+    color: white;
+}
+
+.button-neu:hover {
+    color: #272727;
+}
+
+.hidden {
+    display: none;
+}
