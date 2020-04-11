@@ -3,13 +3,8 @@ import $ from 'jquery'
 import './Home.css'
 
 const Home = () => {
-    const [champions, setChampions] = useState([])
     const [current, setCurrent] = useState([])
-    const [patchOne, setPatchOne] = useState([])
-    const [patchTwo, setPatchTwo] = useState([])
-    const [patchThree, setPatchThree] = useState([])
-    const [patchFour, setPatchFour] = useState([])
-    const [patchFive, setPatchFive] = useState([])
+    const [patches, setPatches] = useState([[], []])
     const [changes, setChanges] = useState([])
     const [buffsNerfs, setBuffsNerfs] = useState([])
 
@@ -19,85 +14,19 @@ const Home = () => {
             method: 'GET',
             url: 'https://ddragon.leagueoflegends.com/api/versions.json'
         }).then((data) => {
-            $.ajax({
-                method: 'GET',
-                url: 'https://ddragon.leagueoflegends.com/cdn/' + data[0] + '/data/en_US/champion.json'
-            }).then(({ data }) => {
-                let arr = []
-                for (let champ in data) {
-                    arr.push(data[champ])
-                }
-                setChampions(arr)
-                setCurrent(arr)
-            })
-
-            $.ajax({
-                method: 'GET',
-                url: 'https://ddragon.leagueoflegends.com/cdn/' + data[1] + '/data/en_US/champion.json'
-            }).then(({ data }) => {
-                let arr = []
-                for (let champ in data) {
-                    arr.push(data[champ])
-                }
-                setPatchOne(arr)
-            })
-
-            $.ajax({
-                method: 'GET',
-                url: 'https://ddragon.leagueoflegends.com/cdn/' + data[2] + '/data/en_US/champion.json'
-            }).then(({ data }) => {
-                let arr = []
-                for (let champ in data) {
-                    arr.push(data[champ])
-                }
-                setPatchTwo(arr)
-            })
-
-            $.ajax({
-                method: 'GET',
-                url: 'https://ddragon.leagueoflegends.com/cdn/' + data[3] + '/data/en_US/champion.json'
-            }).then(({ data }) => {
-                let arr = []
-                for (let champ in data) {
-                    arr.push(data[champ])
-                }
-                setPatchThree(arr)
-            })
-
-            $.ajax({
-                method: 'GET',
-                url: 'https://ddragon.leagueoflegends.com/cdn/' + data[4] + '/data/en_US/champion.json'
-            }).then(({ data }) => {
-                let arr = []
-                for (let champ in data) {
-                    arr.push(data[champ])
-                }
-                setPatchFour(arr)
-            })
-
-            $.ajax({
-                method: 'GET',
-                url: 'https://ddragon.leagueoflegends.com/cdn/' + data[5] + '/data/en_US/champion.json'
-            }).then(({ data }) => {
-                let arr = []
-                for (let champ in data) {
-                    arr.push(data[champ])
-                }
-                setPatchFive(arr)
-            })
-        })
+            Promise.all([...Array(6).keys()].map(i =>
+                $.ajax({
+                    method: 'GET',
+                    url: 'https://ddragon.leagueoflegends.com/cdn/' + data[i] + '/data/en_US/champion.json'
+                }))).then(responses => {
+                    let patchData = responses.map(r => Object.values(r.data));
+                    setPatches(patchData);
+                    setCurrent(patchData[0]);
+                });
+        });
     }, [])
 
-    // useEffect(() => console.log(current), [current])
-    // useEffect(() => console.log(patchOne), [patchOne])
-    // useEffect(() => console.log(patchTwo), [patchTwo])
-    // useEffect(() => console.log(patchThree), [patchThree])
-    // useEffect(() => console.log(patchFour), [patchFour])
-    // useEffect(() => console.log(patchFive), [patchFive])
-    // useEffect(() => console.log(changes), [changes])
-    // useEffect(() => console.log(buffsNerfs), [buffsNerfs])
-
-    useEffect(() => comparePatches(), [patchOne])
+    useEffect(() => comparePatches(), [patches])
 
     useEffect(() => {
         setBuffsNerfs(changes.filter(champ =>
@@ -123,32 +52,26 @@ const Home = () => {
             champ[1].attackspeed > 0 || champ[1].attackspeed < 0))
     }, [changes])
 
-
     const comparePatches = () => {
         const currentPatch = {}
-        current.map(champ => {
+        patches[0].forEach(champ => {
             if (!currentPatch[champ.name]) currentPatch[champ.name] = champ.stats
         })
         const patchOneNotes = {}
-        patchOne.map(champ => {
+        patches[1].forEach(champ => {
             if (!patchOneNotes[champ.name]) patchOneNotes[champ.name] = champ.stats
         })
-        const arrCurrent = Object.entries(currentPatch)
-        const arrPatchOne = Object.entries(patchOneNotes)
 
         const changeObj = {}
-        
-        const attrArr = ['hp', 'hpperlevel', 'mp', 'mpperlevel', 'movespeed', 'armor', 'armorperlevel', 'spellblock', 'spellblockperlevel', 'attackrange', 'hpregen', 
-        'hpregenperlevel', 'mpregen', 'mpregenperlevel', 'crit', 'critperlevel', 'attackdamage', 'attackdamageperlevel', 'attackspeedperlevel', 'attackspeed']
+
+        const attrArr = ['hp', 'hpperlevel', 'mp', 'mpperlevel', 'movespeed', 'armor', 'armorperlevel', 'spellblock', 'spellblockperlevel', 'attackrange', 'hpregen',
+            'hpregenperlevel', 'mpregen', 'mpregenperlevel', 'crit', 'critperlevel', 'attackdamage', 'attackdamageperlevel', 'attackspeedperlevel', 'attackspeed']
         if (currentPatch !== patchOneNotes) {
-            for (let [key, value] of arrCurrent) {
-                for (let [oldKey, oldValue] of arrPatchOne) {
-                    for(let attr of attrArr) {
-                        if(key === oldKey) {
-                            if(!changeObj[key]) {
-                                changeObj[key] = {}
-                            }
-                            if(value[attr] !== oldValue[attr]) {
+            for (let [key, value] of Object.entries(currentPatch)) {
+                for (let [oldKey, oldValue] of Object.entries(patchOneNotes)) {
+                    for (let attr of attrArr) {
+                        if (key === oldKey) {
+                            if (value[attr] !== oldValue[attr]) {
                                 changeObj[key] = { ...changeObj[key], [attr]: value[attr] - oldValue[attr] }
                             }
                         }
@@ -156,24 +79,22 @@ const Home = () => {
                 }
             }
         }
-        let changedArr = Object.entries(changeObj)
-        setChanges(changedArr)
+        setChanges(Object.entries(changeObj))
     }
 
     return (
         <>
             <nav className="navbar navbar-dark mb-3 navNeu">
-                <a className="navbar-brand" href="#">League of Patches</a>
+                <a className="navbar-brand" href="/">League of Patches</a>
             </nav>
 
             <div className="container m-auto">
-                <div class="input-group mb-3 neu">
-                    <input type="text" class="form-control" placeholder="Search A Champion" aria-label="Example text with button addon" aria-describedby="button-addon1"
-                        onChange={({ target: { value } }) => setCurrent(champions.filter((champ) => champ.name.toLowerCase().includes(value.toLowerCase())))} />
+                <div className="input-group mb-3 neu">
+                    <input type="text" className="form-control" placeholder="Search A Champion" aria-label="Example text with button addon" aria-describedby="button-addon1"
+                        onChange={({ target: { value } }) => setCurrent(patches[0].filter((champ) => champ.name.toLowerCase().includes(value.toLowerCase())))} />
                 </div>
                 <div className="row m-auto">
                     {current && current.map(champ =>
-                        <>
                             <div className="card col-md-6 col-sm-12 background" key={champ.key}>
                                 <div className="row no-gutters">
                                     <div className="col-md-12">
@@ -253,7 +174,7 @@ const Home = () => {
                                         </div>
                                         {buffsNerfs && buffsNerfs.map(change =>
                                             champ.name === change[0] ?
-                                                <div className="row">
+                                                <div className="row" key={change[0]}>
                                                     <h3>Changes from previous patch</h3>
                                                     <div className="col-md-12 alert-success">
                                                         <ul>
@@ -280,7 +201,6 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                        </>
                     )}
                 </div>
             </div>
