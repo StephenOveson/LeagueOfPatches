@@ -88,7 +88,7 @@ const Home = () => {
         })
     }, [])
 
-    useEffect(() => console.log(current), [current])
+    // useEffect(() => console.log(current), [current])
     // useEffect(() => console.log(patchOne), [patchOne])
     // useEffect(() => console.log(patchTwo), [patchTwo])
     // useEffect(() => console.log(patchThree), [patchThree])
@@ -97,7 +97,7 @@ const Home = () => {
     // useEffect(() => console.log(changes), [changes])
     // useEffect(() => console.log(buffsNerfs), [buffsNerfs])
 
-    useEffect(() => comparePatches(), [patchFive])
+    useEffect(() => comparePatches(), [patchOne])
 
     useEffect(() => {
         setBuffsNerfs(changes.filter(champ =>
@@ -215,9 +215,7 @@ const Home = () => {
     }
 
     const filterChampions = ({ target: { value } }) => {
-        if (value) {
-            setCurrent(champions.filter((champ) => champ.name.toLowerCase().includes(value.toLowerCase())))
-        }
+        setCurrent(champions.filter((champ) => champ.name.toLowerCase().includes(value.toLowerCase())))
     }
 
     return (
@@ -228,7 +226,8 @@ const Home = () => {
 
             <div className="container m-auto">
                 <div class="input-group mb-3 neu">
-                    <input type="text" class="form-control" placeholder="Search A Champion" aria-label="Example text with button addon" aria-describedby="button-addon1" onChange={filterChampions} />
+                    <input type="text" class="form-control" placeholder="Search A Champion" aria-label="Example text with button addon" aria-describedby="button-addon1"
+                        onChange={({ target: { value } }) => setCurrent(champions.filter((champ) => champ.name.toLowerCase().includes(value.toLowerCase())))} />
                 </div>
                 <div className="row m-auto">
                     {current && current.map(champ =>
