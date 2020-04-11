@@ -137,74 +137,20 @@ const Home = () => {
         const arrPatchOne = Object.entries(patchOneNotes)
 
         const changeObj = {}
-
+        
+        const attrArr = ['hp', 'hpperlevel', 'mp', 'mpperlevel', 'movespeed', 'armor', 'armorperlevel', 'spellblock', 'spellblockperlevel', 'attackrange', 'hpregen', 
+        'hpregenperlevel', 'mpregen', 'mpregenperlevel', 'crit', 'critperlevel', 'attackdamage', 'attackdamageperlevel', 'attackspeedperlevel', 'attackspeed']
         if (currentPatch !== patchOneNotes) {
             for (let [key, value] of arrCurrent) {
                 for (let [oldKey, oldValue] of arrPatchOne) {
-                    if (key === oldKey) {
-                        if (!changeObj[key]) {
-                            changeObj[key] = {}
-                        }
-                        if (value.hp !== oldValue.hp) {
-                            changeObj[key] = { ...changeObj[key], hp: value.hp - oldValue.hp }
-                        }
-                        if (value.hpperlevel !== oldValue.hpperlevel) {
-                            changeObj[key] = { ...changeObj[key], hpperlevel: value.hpperlevel - oldValue.hpperlevel }
-                        }
-                        if (value.mp !== oldValue.mp) {
-                            changeObj[key] = { ...changeObj[key], mp: value.mp - oldValue.mp }
-                        }
-                        if (value.mpperlevel !== oldValue.mpperlevel) {
-                            changeObj[key] = { ...changeObj[key], mpperlevel: value.mpperlevel - oldValue.mpperlevel }
-                        }
-                        if (value.movespeed !== oldValue.movespeed) {
-                            changeObj[key] = { ...changeObj[key], movespeed: value.movespeed - oldValue.movespeed }
-                        }
-                        if (value.armor !== oldValue.armor) {
-                            changeObj[key] = { ...changeObj[key], armor: value.armor - oldValue.armor }
-                        }
-                        if (value.armorperlevel !== oldValue.armorperlevel) {
-                            changeObj[key] = { ...changeObj[key], armorperlevel: value.armorperlevel - oldValue.armorperlevel }
-                        }
-                        if (value.spellblock !== oldValue.spellblock) {
-                            changeObj[key] = { ...changeObj[key], spellblock: value.spellblock - oldValue.spellblock }
-                        }
-                        if (value.spellblockperlevel !== oldValue.spellblockperlevel) {
-                            changeObj[key] = { ...changeObj[key], spellblockperlevel: value.spellblockperlevel - oldValue.spellblockperlevel }
-                        }
-                        if (value.attackrange !== oldValue.attackrange) {
-                            changeObj[key] = { ...changeObj[key], attackrange: value.attackrange - oldValue.attackrange }
-                        }
-                        if (value.hpregen !== oldValue.hpregen) {
-                            changeObj[key] = { ...changeObj[key], hpregen: value.hpregen - oldValue.hpregen }
-                        }
-                        if (value.hpregenperlevel !== oldValue.hpregenperlevel) {
-                            changeObj[key] = { ...changeObj[key], hpregenperlevel: value.hpregenperlevel - oldValue.hpregenperlevel }
-                        }
-                        if (value.mpregen !== oldValue.mpregen) {
-                            changeObj[key] = { ...changeObj[key], mpregen: value.mpregen - oldValue.mpregen }
-                        }
-                        if (value.mpregenperlevel !== oldValue.mpregenperlevel) {
-                            changeObj[key] = { ...changeObj[key], mpregenperlevel: value.mpregenperlevel - oldValue.mpregenperlevel }
-                        }
-                        if (value.crit !== oldValue.crit) {
-                            changeObj[key] = { ...changeObj[key], crit: value.crit - oldValue.crit }
-                        }
-                        if (value.critperlevel !== oldValue.critperlevel) {
-                            changeObj[key] = { ...changeObj[key], critperlevel: value.critperlevel - oldValue.critperlevel }
-                        }
-                        if (value.attackdamage !== oldValue.attackdamage) {
-                            changeObj[key] = { ...changeObj[key], attackdamage: value.attackdamage - oldValue.attackdamage }
-                        }
-                        if (value.attackdamageperlevel !== oldValue.attackdamageperlevel) {
-                            changeObj[key] = { ...changeObj[key], attackdamageperlevel: value.attackdamageperlevel - oldValue.attackdamageperlevel }
-                        }
-                        if (value.attackspeedperlevel !== oldValue.attackspeedperlevel) {
-                            changeObj[key] = { ...changeObj[key], attackspeedperlevel: value.attackspeedperlevel - oldValue.attackspeedperlevel }
-                        }
-                        if (value.attackspeed !== oldValue.attackspeed) {
-                            changeObj[key] = { ...changeObj[key], attackspeed: value.attackspeed - oldValue.attackspeed }
-
+                    for(let attr of attrArr) {
+                        if(key === oldKey) {
+                            if(!changeObj[key]) {
+                                changeObj[key] = {}
+                            }
+                            if(value[attr] !== oldValue[attr]) {
+                                changeObj[key] = { ...changeObj[key], [attr]: value[attr] - oldValue[attr] }
+                            }
                         }
                     }
                 }
@@ -212,10 +158,6 @@ const Home = () => {
         }
         let changedArr = Object.entries(changeObj)
         setChanges(changedArr)
-    }
-
-    const filterChampions = ({ target: { value } }) => {
-        setCurrent(champions.filter((champ) => champ.name.toLowerCase().includes(value.toLowerCase())))
     }
 
     return (
