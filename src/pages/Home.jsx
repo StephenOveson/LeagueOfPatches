@@ -17,7 +17,7 @@ const Home = () => {
             Promise.all([...Array(6).keys()].map(i =>
                 $.ajax({
                     method: 'GET',
-                    url: 'https://ddragon.leagueoflegends.com/cdn/' + data[i] + '/data/en_US/champion.json'
+                    url: 'http://ddragon.leagueoflegends.com/cdn/' + data[i] + '/data/en_US/championFull.json'
                 }))).then(responses => {
                     let patchData = responses.map(r => Object.values(r.data));
                     setPatches(patchData);
@@ -29,27 +29,7 @@ const Home = () => {
     useEffect(() => comparePatches(), [patches])
 
     useEffect(() => {
-        setBuffsNerfs(changes.filter(champ =>
-            champ[1].hp > 0 || champ[1].hp < 0 ||
-            champ[1].hpperlevel > 0 || champ[1].hpperlevel < 0 ||
-            champ[1].mp > 0 || champ[1].mp < 0 ||
-            champ[1].mpperlevel > 0 || champ[1].mpperlevel < 0 ||
-            champ[1].movespeed > 0 || champ[1].movespeed < 0 ||
-            champ[1].armor > 0 || champ[1].armor < 0 ||
-            champ[1].armorperlevel > 0 || champ[1].armorperlevel < 0 ||
-            champ[1].spellblock > 0 || champ[1].spellblock < 0 ||
-            champ[1].spellblockperlevel > 0 || champ[1].spellblockperlevel < 0 ||
-            champ[1].attackrange > 0 || champ[1].attackrange < 0 ||
-            champ[1].hpregen > 0 || champ[1].hpregen < 0 ||
-            champ[1].hpregenperlevel > 0 || champ[1].hpregenperlevel < 0 ||
-            champ[1].mpregen > 0 || champ[1].mpregen < 0 ||
-            champ[1].mpregenperlevel > 0 || champ[1].mpregenperlevel < 0 ||
-            champ[1].crit > 0 || champ[1].crit < 0 ||
-            champ[1].critperlevel > 0 || champ[1].critperlevel < 0 ||
-            champ[1].attackdamage > 0 || champ[1].attackdamage < 0 ||
-            champ[1].attackdamageperlevel > 0 || champ[1].attackdamageperlevel < 0 ||
-            champ[1].attackspeedperlevel > 0 || champ[1].attackspeedperlevel < 0 ||
-            champ[1].attackspeed > 0 || champ[1].attackspeed < 0))
+        setBuffsNerfs(changes.filter(champ => Object.values(champ[1]).some(x => x)))
     }, [changes])
 
     const comparePatches = () => {
