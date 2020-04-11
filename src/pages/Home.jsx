@@ -3,6 +3,7 @@ import $ from 'jquery'
 import './Home.css'
 
 const Home = () => {
+    const [champions, setChampions] = useState([])
     const [current, setCurrent] = useState([])
     const [patchOne, setPatchOne] = useState([])
     const [patchTwo, setPatchTwo] = useState([])
@@ -26,6 +27,7 @@ const Home = () => {
                 for (let champ in data) {
                     arr.push(data[champ])
                 }
+                setChampions(arr)
                 setCurrent(arr)
             })
 
@@ -232,9 +234,7 @@ const Home = () => {
 
     const filterChampions = ({ target: { value } }) => {
         if (value) {
-            setCurrent(current.filter((champ) => champ.name.toLowerCase().includes(value.toLowerCase())))
-        } else {
-            currentSetter();
+            setCurrent(champions.filter((champ) => champ.name.toLowerCase().includes(value.toLowerCase())))
         }
     }
 
