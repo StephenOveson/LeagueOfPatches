@@ -214,24 +214,6 @@ const Home = () => {
         setChanges(changedArr)
     }
 
-    const currentSetter = () => {
-        $.ajax({
-            method: 'GET',
-            url: 'https://ddragon.leagueoflegends.com/api/versions.json'
-        }).then((data) => {
-            $.ajax({
-                method: 'GET',
-                url: 'https://ddragon.leagueoflegends.com/cdn/' + data[0] + '/data/en_US/champion.json'
-            }).then(({ data }) => {
-                let arr = []
-                for (let champ in data) {
-                    arr.push(data[champ])
-                }
-                setCurrent(arr)
-            })
-        })
-    }
-
     const filterChampions = ({ target: { value } }) => {
         if (value) {
             setCurrent(champions.filter((champ) => champ.name.toLowerCase().includes(value.toLowerCase())))
@@ -246,9 +228,6 @@ const Home = () => {
 
             <div className="container m-auto">
                 <div class="input-group mb-3 neu">
-                    <div class="input-group-prepend">
-                        <button class="btn button-neu" type="button" id="button-addon1" onClick={currentSetter}>Reset Champions</button>
-                    </div>
                     <input type="text" class="form-control" placeholder="Search A Champion" aria-label="Example text with button addon" aria-describedby="button-addon1" onChange={filterChampions} />
                 </div>
                 <div className="row m-auto">
