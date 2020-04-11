@@ -269,7 +269,7 @@ const Home = () => {
                     <div class="input-group-prepend">
                         <button class="btn button-neu" type="button" id="button-addon1" onClick={currentSetter}>Reset Champions</button>
                     </div>
-                    <input type="text" class="form-control" placeholder="Search A Champion" aria-label="Example text with button addon" aria-describedby="button-addon1" onChange={filterChampions}/>
+                    <input type="text" class="form-control" placeholder="Search A Champion" aria-label="Example text with button addon" aria-describedby="button-addon1" onChange={filterChampions} />
                 </div>
                 <div className="row m-auto">
                     {current && current.map(champ =>
@@ -278,7 +278,7 @@ const Home = () => {
                                 <div className="row no-gutters">
                                     <div className="col-md-12">
                                         <div className="card-body">
-                                            <div className="row">
+                                            <div className="row mb-3">
                                                 <div className="col-md-6">
                                                     <img
                                                         src={'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/' + champ.key + '.png'}
@@ -303,52 +303,52 @@ const Home = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="row mb-3">
+                                                <div className="row">
                                                     <div className="col-md-12">
                                                         <p className="card-text">{champ.blurb}</p>
                                                     </div>
                                                 </div>
 
                                             </div>
-                                            <div className="row mb-3">
+                                            <div className="row">
 
-                                                <div className="container col-md-5 mb-3">
+                                                <div className="container col-md-5">
 
                                                 </div>
-                                                <div className="col-md-5">
+                                                <div className="col-md-5 mb-3">
                                                     <button className="btn btn-lg btn-block button-neu"
                                                         onClick={() => $('#' + champ.key).hasClass('hidden') ? $('#' + champ.key).removeClass('hidden') : $('#' + champ.key).addClass('hidden')}>Stats</button>
                                                 </div>
-                                            <div className="col-md-12 hidden" id={champ.key}>
-                                                <div className="row">
-                                                    <div className="col-md-6">
-                                                        <ul className="list-group ">
-                                                            <li className="list-group-item neuLess">{`HP: ${champ.stats.hp}`}</li>
-                                                            <li className="list-group-item neuLess">{`HP/Level: ${champ.stats.hpperlevel}`}</li>
-                                                            <li className="list-group-item neuLess">{`MP: ${champ.stats.mp}`}</li>
-                                                            <li className="list-group-item neuLess">{`MP/Level: ${champ.stats.mpperlevel}`}</li>
-                                                            <li className="list-group-item neuLess">{`MP Regen: ${champ.stats.mpregen}`}</li>
-                                                            <li className="list-group-item neuLess">{`MP Regen/Level: ${champ.stats.mpregenperlevel}`}</li>
-                                                            <li className="list-group-item neuLess">{`Armor: ${champ.stats.armor}`}</li>
-                                                            <li className="list-group-item neuLess">{`Armor/Level: ${champ.stats.armorperlevel}`}</li>
-                                                            <li className="list-group-item neuLess">{`MR: ${champ.stats.spellblock}`}</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className="col-md-6">
-                                                        <ul className="list-group ">
-                                                            <li className="list-group-item neuLess">{`MR/Level: ${champ.stats.spellblockperlevel}`}</li>
-                                                            <li className="list-group-item neuLess">{`MS: ${champ.stats.movespeed}`}</li>
-                                                            <li className="list-group-item neuLess">{`Attack Range: ${champ.stats.attackrange}`}</li>
-                                                            <li className="list-group-item neuLess">{`Crit: ${champ.stats.crit}`}</li>
-                                                            <li className="list-group-item neuLess">{`Crit/Level: ${champ.stats.critperlevel}`}</li>
-                                                            <li className="list-group-item neuLess">{`AD: ${champ.stats.attackdamage}`}</li>
-                                                            <li className="list-group-item neuLess">{`AD/Level: ${champ.stats.attackdamageperlevel}`}</li>
-                                                            <li className="list-group-item neuLess">{`AS: ${champ.stats.attackspeed}`}</li>
-                                                            <li className="list-group-item neuLess">{`AS/Level: ${champ.stats.attackspeedperlevel}`}</li>
-                                                        </ul>
+                                                <div className="col-md-12 hidden" id={champ.key}>
+                                                    <div className="row">
+                                                        <div className="col-md-6">
+                                                            <ul className="list-group ">
+                                                                <li className="list-group-item neuLess">{`HP: ${champ.stats.hp}`}</li>
+                                                                <li className="list-group-item neuLess">{`HP/Level: ${champ.stats.hpperlevel}`}</li>
+                                                                <li className="list-group-item neuLess">{`MP: ${champ.stats.mp}`}</li>
+                                                                <li className="list-group-item neuLess">{`MP/Level: ${champ.stats.mpperlevel}`}</li>
+                                                                <li className="list-group-item neuLess">{`MP Regen: ${champ.stats.mpregen}`}</li>
+                                                                <li className="list-group-item neuLess">{`MP Regen/Level: ${champ.stats.mpregenperlevel}`}</li>
+                                                                <li className="list-group-item neuLess">{`Armor: ${champ.stats.armor}`}</li>
+                                                                <li className="list-group-item neuLess">{`Armor/Level: ${champ.stats.armorperlevel}`}</li>
+                                                                <li className="list-group-item neuLess">{`MR: ${champ.stats.spellblock}`}</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div className="col-md-6">
+                                                            <ul className="list-group ">
+                                                                <li className="list-group-item neuLess">{`MR/Level: ${champ.stats.spellblockperlevel}`}</li>
+                                                                <li className="list-group-item neuLess">{`MS: ${champ.stats.movespeed}`}</li>
+                                                                <li className="list-group-item neuLess">{`Attack Range: ${champ.stats.attackrange}`}</li>
+                                                                <li className="list-group-item neuLess">{`Crit: ${champ.stats.crit}`}</li>
+                                                                <li className="list-group-item neuLess">{`Crit/Level: ${champ.stats.critperlevel}`}</li>
+                                                                <li className="list-group-item neuLess">{`AD: ${champ.stats.attackdamage}`}</li>
+                                                                <li className="list-group-item neuLess">{`AD/Level: ${champ.stats.attackdamageperlevel}`}</li>
+                                                                <li className="list-group-item neuLess">{`AS: ${champ.stats.attackspeed}`}</li>
+                                                                <li className="list-group-item neuLess">{`AS/Level: ${champ.stats.attackspeedperlevel}`}</li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             </div>
                                         </div>
                                         {buffsNerfs && buffsNerfs.map(change =>
