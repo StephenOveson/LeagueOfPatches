@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4c8c9325b6a84ccc7111930742e97bc3",
+    "revision": "7522fa04e0d6978dc8ab29e28a47f99e",
     "url": "/LeagueOfPatches/index.html"
   },
   {
-    "revision": "0d57cbfa0a28c79476ac",
+    "revision": "9ab5a3ff1d2d2536a471",
     "url": "/LeagueOfPatches/static/css/main.c8953361.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/LeagueOfPatches/static/js/2.4d16bf3e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0d57cbfa0a28c79476ac",
-    "url": "/LeagueOfPatches/static/js/main.88c2ee04.chunk.js"
+    "revision": "9ab5a3ff1d2d2536a471",
+    "url": "/LeagueOfPatches/static/js/main.094e1ca2.chunk.js"
   },
   {
     "revision": "d5e82e8991387f7c0793",
