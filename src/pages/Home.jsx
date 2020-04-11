@@ -86,13 +86,13 @@ const Home = () => {
         })
     }, [])
 
-    // useEffect(() => console.log(current), [current])
+    useEffect(() => console.log(current), [current])
     // useEffect(() => console.log(patchOne), [patchOne])
     // useEffect(() => console.log(patchTwo), [patchTwo])
     // useEffect(() => console.log(patchThree), [patchThree])
     // useEffect(() => console.log(patchFour), [patchFour])
-    useEffect(() => console.log(patchFive), [patchFive])
-    useEffect(() => console.log(changes), [changes])
+    // useEffect(() => console.log(patchFive), [patchFive])
+    // useEffect(() => console.log(changes), [changes])
     // useEffect(() => console.log(buffsNerfs), [buffsNerfs])
 
     useEffect(() => comparePatches(), [patchFive])
@@ -274,7 +274,7 @@ const Home = () => {
                 <div className="row m-auto">
                     {current && current.map(champ =>
                         <>
-                            <div className="card col-md-6 col-sm-12 background m-auto" key={champ.key}>
+                            <div className="card col-md-6 col-sm-12 background" key={champ.key}>
                                 <div className="row no-gutters">
                                     <div className="col-md-12">
                                         <div className="card-body">
@@ -319,7 +319,6 @@ const Home = () => {
                                                     <button className="btn btn-lg btn-block button-neu"
                                                         onClick={() => $('#' + champ.key).hasClass('hidden') ? $('#' + champ.key).removeClass('hidden') : $('#' + champ.key).addClass('hidden')}>Stats</button>
                                                 </div>
-                                            </div>
                                             <div className="col-md-12 hidden" id={champ.key}>
                                                 <div className="row">
                                                     <div className="col-md-6">
@@ -349,6 +348,7 @@ const Home = () => {
                                                         </ul>
                                                     </div>
                                                 </div>
+                                            </div>
                                             </div>
                                         </div>
                                         {buffsNerfs && buffsNerfs.map(change =>
