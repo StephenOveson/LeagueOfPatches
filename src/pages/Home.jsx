@@ -131,28 +131,8 @@ const Home = () => {
         patchOne.map(champ => {
             if (!patchOneNotes[champ.name]) patchOneNotes[champ.name] = champ.stats
         })
-        const patchTwoNotes = {}
-        patchTwo.map(champ => {
-            if (!patchTwoNotes[champ.name]) patchTwoNotes[champ.name] = champ.stats
-        })
-        const patchThreeNotes = {}
-        patchThree.map(champ => {
-            if (!patchThreeNotes[champ.name]) patchThreeNotes[champ.name] = champ.stats
-        })
-        const patchFourNotes = {}
-        patchFour.map(champ => {
-            if (!patchFourNotes[champ.name]) patchFourNotes[champ.name] = champ.stats
-        })
-        const patchFiveNotes = {}
-        patchFive.map(champ => {
-            if (!patchFiveNotes[champ.name]) patchFiveNotes[champ.name] = champ.stats
-        })
         const arrCurrent = Object.entries(currentPatch)
         const arrPatchOne = Object.entries(patchOneNotes)
-        const arrPatchTwo = Object.entries(patchTwoNotes)
-        const arrPatchThree = Object.entries(patchThreeNotes)
-        const arrPatchFour = Object.entries(patchFourNotes)
-        const arrPatchFive = Object.entries(patchFiveNotes)
 
         const changeObj = {}
 
@@ -252,7 +232,7 @@ const Home = () => {
 
     const filterChampions = ({ target: { value } }) => {
         if (value) {
-            setCurrent(current.filter((champ) => champ.name.includes(value)))
+            setCurrent(current.filter((champ) => champ.name.toLowerCase().includes(value.toLowerCase())))
         } else {
             currentSetter();
         }
