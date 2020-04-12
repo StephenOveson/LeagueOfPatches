@@ -17,7 +17,7 @@ const Home = () => {
             Promise.all([...Array(6).keys()].map(i =>
                 $.ajax({
                     method: 'GET',
-                    url: 'http://ddragon.leagueoflegends.com/cdn/' + data[i] + '/data/en_US/championFull.json'
+                    url: 'https://ddragon.leagueoflegends.com/cdn/' + data[i] + '/data/en_US/championFull.json'
                 }))).then(responses => {
                     let patchData = responses.map(r => Object.values(r.data));
                     setPatches(patchData);
