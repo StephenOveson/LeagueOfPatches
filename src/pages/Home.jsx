@@ -67,13 +67,17 @@ const Home = () => {
 
     const allTagFilter = () => {
         let arr = []
-        current.forEach(champ => {
+        patches[0].forEach(champ => {
             if(!arr.includes(...champ.tags)) arr.push(...champ.tags)
         })
-        console.log(arr)
+        let newArr = []
+        arr.forEach(tag => {
+            if(!newArr.includes(tag)) newArr.push(tag)
+        })
+        setTags(newArr)
     }
 
-    useEffect(() => allTagFilter(), [current])
+    useEffect(() => allTagFilter(), [patches])
 
     return (
         <>
@@ -85,6 +89,11 @@ const Home = () => {
                 <div className="input-group mb-3 neu">
                     <input type="text" className="form-control" placeholder="Search A Champion" aria-label="Example text with button addon" aria-describedby="button-addon1"
                         onChange={({ target: { value } }) => setCurrent(patches[0].filter((champ) => champ.name.toLowerCase().includes(value.toLowerCase())))} />
+                </div>
+                <div className="row">
+                    <div className="col-md-12 d-flex justify-content-center">
+                        {tags.map(tag => <button className="btn button-neu m-3" key={tag} value={tag} onClick={({target: {value}}) => setCurrent(patches[0].filter((champ) => champ.tags.includes(value)))}>{tag}</button>)}
+                    </div>
                 </div>
                 <div className="row m-auto">
                     {current && current.map(champ =>
