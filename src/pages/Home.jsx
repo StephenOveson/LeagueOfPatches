@@ -92,17 +92,19 @@ const Home = () => {
                                                 <h5 className="card-subtitle mb-2 text-muted">{champ.title}</h5>
                                                 <p className="card-text"><small className="" value={champ.tags.join(' ')}>{champ.tags.join(', ')}</small></p>
                                                 <div className="row">
-                                                    <div className="progress mb-1 col-md-12">
-                                                        <div className="progress-bar bg-danger" style={{ width: champ.info.attack * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.attack} aria-valuemin="0" aria-valuemax="10">Attack</div>
-                                                    </div>
-                                                    <div className="progress mb-1 col-md-12">
-                                                        <div className="progress-bar bg-success" style={{ width: champ.info.defense * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.attack} aria-valuemin="0" aria-valuemax="10">Defense</div>
-                                                    </div>
-                                                    <div className="progress mb-1 col-md-12">
-                                                        <div className="progress-bar bg-primary" style={{ width: champ.info.magic * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.attack} aria-valuemin="0" aria-valuemax="10">Magic</div>
-                                                    </div>
-                                                    <div className="progress mb-1 col-md-12">
-                                                        <div className="progress-bar bg-secondary" style={{ width: champ.info.difficulty * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.attack} aria-valuemin="0" aria-valuemax="10">Difficulty</div>
+                                                    <div className="col-md-12">
+                                                        <div className="progress mb-1">
+                                                            <div className="progress-bar bg-danger" style={{ width: champ.info.attack * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.attack} aria-valuemin="0" aria-valuemax="10">Attack</div>
+                                                        </div>
+                                                        <div className="progress mb-1">
+                                                            <div className="progress-bar bg-success" style={{ width: champ.info.defense * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.defense} aria-valuemin="0" aria-valuemax="10">Defense</div>
+                                                        </div>
+                                                        <div className="progress mb-1">
+                                                            <div className="progress-bar bg-primary" style={{ width: champ.info.magic * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.magic} aria-valuemin="0" aria-valuemax="10">Magic</div>
+                                                        </div>
+                                                        <div className="progress mb-1">
+                                                            <div className="progress-bar bg-secondary" style={{ width: champ.info.difficulty * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.diffi} aria-valuemin="0" aria-valuemax="10">Difficulty</div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -158,20 +160,20 @@ const Home = () => {
                                         champ.name === change[0] ?
                                             <div className="row" key={change[0]}>
                                                 <div className="col-md-12"><h3>Recent Changes</h3>
-                                                <ul style={{ listStyle: 'none' }}>
-                                                    {attrArr.map(attr => change[1][attr] > 0 && <div>
-                                                        <div className="col-md-12 neu">
-                                                            {change[1][attr] && <li><span><i class="far fa-plus-square"></i></span> {attr}: {change[1][attr]}</li>}
-                                                        </div>
-                                                    </div>)}
-                                                </ul>
-                                                <ul style={{ listStyle: 'none' }}>
-                                                    {attrArr.map(attr => change[1][attr] < 0 && <div>
-                                                        <div className="col-md-12 neu">
-                                                            {change[1][attr] && <li><span><i class="far fa-minus-square"></i></span> {attr}: {change[1][attr]}</li>}
-                                                        </div>
-                                                    </div>)}
-                                                </ul>
+                                                    <ul style={{ listStyle: 'none' }}>
+                                                        {attrArr.map(attr => change[1][attr] > 0 && <div>
+                                                            <div className="col-md-12 neu">
+                                                                {change[1][attr] && <li><span><i class="far fa-plus-square"></i></span> {attr}: {change[1][attr]}</li>}
+                                                            </div>
+                                                        </div>)}
+                                                    </ul>
+                                                    <ul style={{ listStyle: 'none' }}>
+                                                        {attrArr.map(attr => change[1][attr] < 0 && <div>
+                                                            <div className="col-md-12 neu">
+                                                                {change[1][attr] && <li><span><i class="far fa-minus-square"></i></span> {attr}: {change[1][attr]}</li>}
+                                                            </div>
+                                                        </div>)}
+                                                    </ul>
                                                 </div>
                                             </div> : null
                                     )}
