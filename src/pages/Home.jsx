@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import $ from 'jquery'
 import './Home.css'
+import Loading from '../components/Loading'
 
 const Home = () => {
     const [tags, setTags] = useState([])
@@ -25,7 +26,7 @@ const Home = () => {
                 }))).then(responses => {
                     let patchData = responses.map(r => Object.values(r.data));
                     setPatches(patchData);
-                    setCurrent(patchData[0]);
+                    setCurrent(patchData[0])
                 });
         });
     }, [])
@@ -80,7 +81,7 @@ const Home = () => {
     useEffect(() => allTagFilter(), [patches])
 
     return (
-        <>
+        <Loading ready={current.length > 0}>
             <nav className="navbar navbar-dark mb-3 navNeu">
                 <a className="navbar-brand" href="/">League of Patches</a>
             </nav>
@@ -92,7 +93,7 @@ const Home = () => {
                 </div>
                 <div className="row">
                     <div className="col-md-12 d-flex justify-content-center">
-                    <button className="btn button-neu m-3" onClick={({target: {value}}) => setCurrent(patches[0])}>Remove Tags</button>
+                    <button className="btn button-neu m-3" onClick={({target: {value}}) => setCurrent(patches[0])}>All</button>
                         {tags.map(tag => <button className="btn button-neu m-3" key={tag} value={tag} onClick={({target: {value}}) => setCurrent(patches[0].filter((champ) => champ.tags.includes(value)))}>{tag}</button>)}
                     </div>
                 </div>
@@ -103,12 +104,12 @@ const Home = () => {
                                 <div className="col-md-12">
                                     <div className="card-body">
                                         <div className="row mb-3">
-                                            <div className="col-md-6">
+                                            <div className="col-md-5">
                                                 <img
                                                     src={'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/' + champ.key + '.png'}
                                                     className="card-img radius m-auto" alt={champ.name} />
                                             </div>
-                                            <div className="col-md-6">
+                                            <div className="col-md-7">
                                                 <h4 className="card-title">{champ.name}</h4>
                                                 <h5 className="card-subtitle mb-2 text-muted">{champ.title}</h5>
                                                 <p className="card-text"><small className="" value={champ.tags.join(' ')}>{champ.tags.join(', ')}</small></p>
@@ -205,7 +206,7 @@ const Home = () => {
                     )}
                 </div>
             </div>
-        </>
+        </Loading>
     )
 }
 
