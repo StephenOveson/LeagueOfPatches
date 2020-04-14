@@ -3,6 +3,7 @@ import $ from 'jquery'
 import './Home.css'
 
 const Home = () => {
+    const [tags, setTags] = useState([])
     const [current, setCurrent] = useState([])
     const [patches, setPatches] = useState([[], []])
     const [changes, setChanges] = useState([])
@@ -63,6 +64,16 @@ const Home = () => {
         }
         setChanges(Object.entries(changeObj))
     }
+
+    const allTagFilter = () => {
+        let arr = []
+        current.forEach(champ => {
+            if(!arr.includes(...champ.tags)) arr.push(...champ.tags)
+        })
+        console.log(arr)
+    }
+
+    useEffect(() => allTagFilter(), [current])
 
     return (
         <>
@@ -161,22 +172,23 @@ const Home = () => {
                                             <div className="row" key={change[0]}>
                                                 <div className="col-md-12"><h3>Recent Changes</h3>
                                                     <ul style={{ listStyle: 'none' }}>
-                                                        {attrArr.map(attr => change[1][attr] > 0 && <div>
-                                                            <div className="col-md-12 neu">
-                                                                {change[1][attr] && <li><span><i class="far fa-plus-square"></i></span> {attr}: {change[1][attr]}</li>}
-                                                            </div>
-                                                        </div>)}
+                                                        {attrArr.map(attr => change[1][attr] > 0 &&
+                                                            <div key={attr}>
+                                                                <div className="col-md-12 neu">
+                                                                    {change[1][attr] && <li><span><i className="far fa-plus-square"></i></span> {attr}: {change[1][attr]}</li>}
+                                                                </div>
+                                                            </div>)}
                                                     </ul>
                                                     <ul style={{ listStyle: 'none' }}>
-                                                        {attrArr.map(attr => change[1][attr] < 0 && <div>
-                                                            <div className="col-md-12 neu">
-                                                                {change[1][attr] && <li><span><i class="far fa-minus-square"></i></span> {attr}: {change[1][attr]}</li>}
-                                                            </div>
-                                                        </div>)}
+                                                        {attrArr.map(attr => change[1][attr] < 0 &&
+                                                            <div key={attr}>
+                                                                <div className="col-md-12 neu">
+                                                                    {change[1][attr] && <li><span><i className="far fa-minus-square"></i></span> {attr}: {change[1][attr]}</li>}
+                                                                </div>
+                                                            </div>)}
                                                     </ul>
                                                 </div>
-                                            </div> : null
-                                    )}
+                                            </div> : null)}
                                 </div>
                             </div>
                         </div>
