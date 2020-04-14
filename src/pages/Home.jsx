@@ -92,6 +92,7 @@ const Home = () => {
                 </div>
                 <div className="row">
                     <div className="col-md-12 d-flex justify-content-center">
+                    <button className="btn button-neu m-3" onClick={({target: {value}}) => setCurrent(patches[0])}>Remove Tags</button>
                         {tags.map(tag => <button className="btn button-neu m-3" key={tag} value={tag} onClick={({target: {value}}) => setCurrent(patches[0].filter((champ) => champ.tags.includes(value)))}>{tag}</button>)}
                     </div>
                 </div>
