@@ -144,32 +144,43 @@ const Home = () => {
                                             </div>
                                             <div className="col-md-12 hidden" id={champ.name}>
                                                 <ul className="list-unstyled">
-                                                    <li className="media">
-                                                        <img src={'http://ddragon.leagueoflegends.com/cdn/10.8.1/img/spell/' + champ.spells[0].id + '.png'} className="mr-3" alt="..." />
+                                                <li className="media">
+                                                        <img src={'http://ddragon.leagueoflegends.com/cdn/10.8.1/img/passive/' + champ.passive.image.full} className="mr-3" alt="..." />
+                                                        <div className="media-body">
+                                                            <h5 className="mt-0 mb-1">{champ.passive.name}</h5>
+                                                            <p className="mt-0 mb-1">{champ.passive.description}</p>
+                                                        </div>
+                                                    </li>
+                                                    <li className="media my-4">
+                                                        <img src={'https://ddragon.leagueoflegends.com/cdn/10.8.1/img/spell/' + champ.spells[0].id + '.png'} className="mr-3" alt="..." />
                                                         <div className="media-body">
                                                             <h5 className="mt-0 mb-1">{champ.spells[0].name}</h5>
                                                             <p className="mt-0 mb-1">{champ.spells[0].description}</p>
+                                                            {champ.spells[0].cooldownBurn && <p className="mt-0 mb-1">Cooldown: {champ.spells[0].cooldownBurn}</p>}
                                                         </div>
                                                     </li>
                                                     <li className="media my-4">
-                                                    <img src={'http://ddragon.leagueoflegends.com/cdn/10.8.1/img/spell/' + champ.spells[1].id + '.png'} className="mr-3" alt="..." />
+                                                    <img src={'https://ddragon.leagueoflegends.com/cdn/10.8.1/img/spell/' + champ.spells[1].id + '.png'} className="mr-3" alt="..." />
                                                         <div className="media-body">
                                                             <h5 className="mt-0 mb-1">{champ.spells[1].name}</h5>
                                                             <p className="mt-0 mb-1">{champ.spells[1].description}</p>
+                                                            {champ.spells[1].cooldownBurn && <p className="mt-0 mb-1">Cooldown: {champ.spells[1].cooldownBurn}</p>}
                                                         </div>
                                                     </li>
                                                     <li className="media my-4">
-                                                    <img src={'http://ddragon.leagueoflegends.com/cdn/10.8.1/img/spell/' + champ.spells[2].id + '.png'} className="mr-3" alt="..." />
+                                                    <img src={'https://ddragon.leagueoflegends.com/cdn/10.8.1/img/spell/' + champ.spells[2].id + '.png'} className="mr-3" alt="..." />
                                                         <div className="media-body">
                                                             <h5 className="mt-0 mb-1">{champ.spells[2].name}</h5>
                                                             <p className="mt-0 mb-1">{champ.spells[2].description}</p>
+                                                            {champ.spells[2].cooldownBurn && <p className="mt-0 mb-1">Cooldown: {champ.spells[2].cooldownBurn}</p>}
                                                         </div>
                                                     </li>
                                                     <li className="media">
-                                                    <img src={'http://ddragon.leagueoflegends.com/cdn/10.8.1/img/spell/' + champ.spells[3].id + '.png'} className="mr-3" alt="..." />
+                                                    <img src={'https://ddragon.leagueoflegends.com/cdn/10.8.1/img/spell/' + champ.spells[3].id + '.png'} className="mr-3" alt="..." />
                                                         <div className="media-body">
                                                             <h5 className="mt-0 mb-1">{champ.spells[3].name}</h5>
                                                             <p className="mt-0 mb-1">{champ.spells[3].description}</p>
+                                                            {champ.spells[3].cooldownBurn && <p className="mt-0 mb-1"><span className="bg-danger">Cooldown: </span>{champ.spells[3].cooldownBurn}</p>}
                                                         </div>
                                                     </li>
                                                 </ul>
