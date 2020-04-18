@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/LeagueOfPatches/static/css/main.c8953361.chunk.css",
-    "main.js": "/LeagueOfPatches/static/js/main.970b0ba5.chunk.js",
-    "main.js.map": "/LeagueOfPatches/static/js/main.970b0ba5.chunk.js.map",
+    "main.js": "/LeagueOfPatches/static/js/main.81f34250.chunk.js",
+    "main.js.map": "/LeagueOfPatches/static/js/main.81f34250.chunk.js.map",
     "runtime-main.js": "/LeagueOfPatches/static/js/runtime-main.17674161.js",
     "runtime-main.js.map": "/LeagueOfPatches/static/js/runtime-main.17674161.js.map",
-    "static/js/2.3fbff944.chunk.js": "/LeagueOfPatches/static/js/2.3fbff944.chunk.js",
-    "static/js/2.3fbff944.chunk.js.map": "/LeagueOfPatches/static/js/2.3fbff944.chunk.js.map",
+    "static/js/2.f66083ff.chunk.js": "/LeagueOfPatches/static/js/2.f66083ff.chunk.js",
+    "static/js/2.f66083ff.chunk.js.map": "/LeagueOfPatches/static/js/2.f66083ff.chunk.js.map",
     "index.html": "/LeagueOfPatches/index.html",
-    "precache-manifest.77e8832f87a7273d5c5fc57579895d81.js": "/LeagueOfPatches/precache-manifest.77e8832f87a7273d5c5fc57579895d81.js",
+    "precache-manifest.e56ed6d6905dda823a2b2849248eee47.js": "/LeagueOfPatches/precache-manifest.e56ed6d6905dda823a2b2849248eee47.js",
     "service-worker.js": "/LeagueOfPatches/service-worker.js",
     "static/css/main.c8953361.chunk.css.map": "/LeagueOfPatches/static/css/main.c8953361.chunk.css.map",
-    "static/js/2.3fbff944.chunk.js.LICENSE.txt": "/LeagueOfPatches/static/js/2.3fbff944.chunk.js.LICENSE.txt"
+    "static/js/2.f66083ff.chunk.js.LICENSE.txt": "/LeagueOfPatches/static/js/2.f66083ff.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.17674161.js",
-    "static/js/2.3fbff944.chunk.js",
+    "static/js/2.f66083ff.chunk.js",
     "static/css/main.c8953361.chunk.css",
-    "static/js/main.970b0ba5.chunk.js"
+    "static/js/main.81f34250.chunk.js"
   ]
 }
