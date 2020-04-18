@@ -4,7 +4,7 @@ import './Home.css'
 import Loading from '../components/Loading'
 
 const Home = () => {
-    const [tags, setTags] = useState([])
+    const [tags, setTags] = useState(new Set())
     const [current, setCurrent] = useState([])
     const [patches, setPatches] = useState([[], []])
     const [changes, setChanges] = useState([])
@@ -12,7 +12,6 @@ const Home = () => {
 
     const attrArr = ['hp', 'hpperlevel', 'mp', 'mpperlevel', 'movespeed', 'armor', 'armorperlevel', 'spellblock', 'spellblockperlevel', 'attackrange', 'hpregen',
         'hpregenperlevel', 'mpregen', 'mpregenperlevel', 'crit', 'critperlevel', 'attackdamage', 'attackdamageperlevel', 'attackspeedperlevel', 'attackspeed']
-
 
     useEffect(() => {
         $.ajax({
@@ -32,6 +31,7 @@ const Home = () => {
     }, [])
 
     useEffect(() => comparePatches(), [patches])
+    useEffect(() => console.log(patches[0]), [patches])
 
     useEffect(() => {
         setBuffsNerfs(changes.filter(champ => Object.values(champ[1]).some(x => x)))
@@ -49,7 +49,6 @@ const Home = () => {
 
         const changeObj = {}
 
-
         if (currentPatch !== patchOneNotes) {
             for (let [key, value] of Object.entries(currentPatch)) {
                 for (let [oldKey, oldValue] of Object.entries(patchOneNotes)) {
@@ -66,19 +65,15 @@ const Home = () => {
         setChanges(Object.entries(changeObj))
     }
 
-    const allTagFilter = () => {
-        let arr = []
+    useEffect(() => {
+        let tagSet = new Set()
         patches[0].forEach(champ => {
-            if(!arr.includes(...champ.tags)) arr.push(...champ.tags)
+            champ.tags.forEach(tag => {
+                tagSet.add(tag)
+            })
         })
-        let newArr = []
-        arr.forEach(tag => {
-            if(!newArr.includes(tag)) newArr.push(tag)
-        })
-        setTags(newArr)
-    }
-
-    useEffect(() => allTagFilter(), [patches])
+        setTags(tagSet)
+    }, [patches])
 
     return (
         <Loading ready={current.length > 0}>
@@ -93,8 +88,8 @@ const Home = () => {
                 </div>
                 <div className="row">
                     <div className="col-md-12 d-flex justify-content-center">
-                    <button className="btn button-neu m-3" onClick={({target: {value}}) => setCurrent(patches[0])}>All</button>
-                        {tags.map(tag => <button className="btn button-neu m-3" key={tag} value={tag} onClick={({target: {value}}) => setCurrent(patches[0].filter((champ) => champ.tags.includes(value)))}>{tag}</button>)}
+                        <button className="btn button-neu m-3" onClick={() => setCurrent(patches[0])}>All</button>
+                        {tags && [...tags].map(tag => <button className="btn button-neu m-3" key={tag} value={tag} onClick={({ target: { value } }) => setCurrent(patches[0].filter((champ) => champ.tags.includes(value)))}>{tag}</button>)}
                     </div>
                 </div>
                 <div className="row m-auto">
@@ -125,7 +120,7 @@ const Home = () => {
                                                             <div className="progress-bar bg-primary" style={{ width: champ.info.magic * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.magic} aria-valuemin="0" aria-valuemax="10">Magic</div>
                                                         </div>
                                                         <div className="progress mb-1">
-                                                            <div className="progress-bar bg-secondary" style={{ width: champ.info.difficulty * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.diffi} aria-valuemin="0" aria-valuemax="10">Difficulty</div>
+                                                            <div className="progress-bar bg-secondary" style={{ width: champ.info.difficulty * 10 + '%' }} role="progressbar" aria-valuenow={champ.info.difficulty} aria-valuemin="0" aria-valuemax="10">Difficulty</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -140,11 +135,44 @@ const Home = () => {
                                         <div className="row">
 
                                             <div className="container col-md-5">
-
+                                                <button className="btn btn-lg btn-block button-neu"
+                                                    onClick={() => $('#' + champ.name).hasClass('hidden') ? $('#' + champ.name).removeClass('hidden') : $('#' + champ.name).addClass('hidden')}>Spells</button>
                                             </div>
                                             <div className="col-md-5 mb-3">
                                                 <button className="btn btn-lg btn-block button-neu"
                                                     onClick={() => $('#' + champ.key).hasClass('hidden') ? $('#' + champ.key).removeClass('hidden') : $('#' + champ.key).addClass('hidden')}>Stats</button>
+                                            </div>
+                                            <div className="col-md-12 hidden" id={champ.name}>
+                                                <ul className="list-unstyled">
+                                                    <li className="media">
+                                                        <img src={'http://ddragon.leagueoflegends.com/cdn/10.8.1/img/spell/' + champ.spells[0].id + '.png'} className="mr-3" alt="..." />
+                                                        <div className="media-body">
+                                                            <h5 className="mt-0 mb-1">{champ.spells[0].name}</h5>
+                                                            <p className="mt-0 mb-1">{champ.spells[0].description}</p>
+                                                        </div>
+                                                    </li>
+                                                    <li className="media my-4">
+                                                    <img src={'http://ddragon.leagueoflegends.com/cdn/10.8.1/img/spell/' + champ.spells[1].id + '.png'} className="mr-3" alt="..." />
+                                                        <div className="media-body">
+                                                            <h5 className="mt-0 mb-1">{champ.spells[1].name}</h5>
+                                                            <p className="mt-0 mb-1">{champ.spells[1].description}</p>
+                                                        </div>
+                                                    </li>
+                                                    <li className="media my-4">
+                                                    <img src={'http://ddragon.leagueoflegends.com/cdn/10.8.1/img/spell/' + champ.spells[2].id + '.png'} className="mr-3" alt="..." />
+                                                        <div className="media-body">
+                                                            <h5 className="mt-0 mb-1">{champ.spells[2].name}</h5>
+                                                            <p className="mt-0 mb-1">{champ.spells[2].description}</p>
+                                                        </div>
+                                                    </li>
+                                                    <li className="media">
+                                                    <img src={'http://ddragon.leagueoflegends.com/cdn/10.8.1/img/spell/' + champ.spells[3].id + '.png'} className="mr-3" alt="..." />
+                                                        <div className="media-body">
+                                                            <h5 className="mt-0 mb-1">{champ.spells[3].name}</h5>
+                                                            <p className="mt-0 mb-1">{champ.spells[3].description}</p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
                                             </div>
                                             <div className="col-md-12 hidden" id={champ.key}>
                                                 <div className="row">
