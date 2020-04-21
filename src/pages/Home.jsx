@@ -134,11 +134,11 @@ const Home = () => {
                                         </div>
                                         <div className="row">
 
-                                            <div className="container col-md-5">
+                                            <div className="container col-md-6">
                                                 <button className="btn btn-lg btn-block button-neu"
                                                     onClick={() => $('#' + champ.name).hasClass('hidden') ? $('#' + champ.name).removeClass('hidden') : $('#' + champ.name).addClass('hidden')}>Spells</button>
                                             </div>
-                                            <div className="col-md-5 mb-3">
+                                            <div className="col-md-6 mb-3">
                                                 <button className="btn btn-lg btn-block button-neu"
                                                     onClick={() => $('#' + champ.key).hasClass('hidden') ? $('#' + champ.key).removeClass('hidden') : $('#' + champ.key).addClass('hidden')}>Stats</button>
                                             </div>
