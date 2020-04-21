@@ -144,73 +144,33 @@ const Home = () => {
                                             </div>
                                             <div className="col-md-12 hidden" id={champ.name}>
                                                 <ul className="list-unstyled">
-                                                <li className="media">
+                                                    <li className="media">
                                                         <img src={'http://ddragon.leagueoflegends.com/cdn/10.8.1/img/passive/' + champ.passive.image.full} className="mr-3" alt="..." />
                                                         <div className="media-body">
                                                             <h5 className="mt-0 mb-1">{champ.passive.name}</h5>
                                                             <p className="mt-0 mb-1">{champ.passive.description}</p>
                                                         </div>
                                                     </li>
-                                                    <li className="media my-4">
-                                                        <img src={'https://ddragon.leagueoflegends.com/cdn/10.8.1/img/spell/' + champ.spells[0].id + '.png'} className="mr-3" alt="..." />
+                                                    {champ.spells.map(spell => <li className="media my-4" key={spell.id}>
+                                                        <img src={'https://ddragon.leagueoflegends.com/cdn/10.8.1/img/spell/' + spell.id + '.png'} className="mr-3" alt="..." />
                                                         <div className="media-body">
-                                                            <h5 className="mt-0 mb-1">{champ.spells[0].name}</h5>
-                                                            <p className="mt-0 mb-1">{champ.spells[0].description}</p>
-                                                            {champ.spells[0].cooldownBurn && <p className="mt-0 mb-1">Cooldown: {champ.spells[0].cooldownBurn}</p>}
+                                                            <h5 className="mt-0 mb-1">{spell.name}</h5>
+                                                            <p className="mt-0 mb-1">{spell.description}</p>
+                                                            {spell.cooldownBurn && <p className="mt-0 mb-1"><span className="h6">Cooldown: </span>{spell.cooldownBurn}</p>}
+                                                            {spell.costBurn && <p className="mt-0 mb-1"><span className="h6">Cost: </span>{spell.costBurn}</p>}
+                                                            {spell.rangeBurn && <p className="mt-0 mb-1"><span className="h6">Range: </span>{spell.rangeBurn}</p>}
                                                         </div>
                                                     </li>
-                                                    <li className="media my-4">
-                                                    <img src={'https://ddragon.leagueoflegends.com/cdn/10.8.1/img/spell/' + champ.spells[1].id + '.png'} className="mr-3" alt="..." />
-                                                        <div className="media-body">
-                                                            <h5 className="mt-0 mb-1">{champ.spells[1].name}</h5>
-                                                            <p className="mt-0 mb-1">{champ.spells[1].description}</p>
-                                                            {champ.spells[1].cooldownBurn && <p className="mt-0 mb-1">Cooldown: {champ.spells[1].cooldownBurn}</p>}
-                                                        </div>
-                                                    </li>
-                                                    <li className="media my-4">
-                                                    <img src={'https://ddragon.leagueoflegends.com/cdn/10.8.1/img/spell/' + champ.spells[2].id + '.png'} className="mr-3" alt="..." />
-                                                        <div className="media-body">
-                                                            <h5 className="mt-0 mb-1">{champ.spells[2].name}</h5>
-                                                            <p className="mt-0 mb-1">{champ.spells[2].description}</p>
-                                                            {champ.spells[2].cooldownBurn && <p className="mt-0 mb-1">Cooldown: {champ.spells[2].cooldownBurn}</p>}
-                                                        </div>
-                                                    </li>
-                                                    <li className="media">
-                                                    <img src={'https://ddragon.leagueoflegends.com/cdn/10.8.1/img/spell/' + champ.spells[3].id + '.png'} className="mr-3" alt="..." />
-                                                        <div className="media-body">
-                                                            <h5 className="mt-0 mb-1">{champ.spells[3].name}</h5>
-                                                            <p className="mt-0 mb-1">{champ.spells[3].description}</p>
-                                                            {champ.spells[3].cooldownBurn && <p className="mt-0 mb-1"><span className="bg-danger">Cooldown: </span>{champ.spells[3].cooldownBurn}</p>}
-                                                        </div>
-                                                    </li>
+                                                    )}
                                                 </ul>
                                             </div>
                                             <div className="col-md-12 hidden" id={champ.key}>
                                                 <div className="row">
-                                                    <div className="col-md-6">
-                                                        <ul className="list-group ">
-                                                            <li className="list-group-item neuLess">{`HP: ${champ.stats.hp}`}</li>
-                                                            <li className="list-group-item neuLess">{`HP/Level: ${champ.stats.hpperlevel}`}</li>
-                                                            <li className="list-group-item neuLess">{`MP: ${champ.stats.mp}`}</li>
-                                                            <li className="list-group-item neuLess">{`MP/Level: ${champ.stats.mpperlevel}`}</li>
-                                                            <li className="list-group-item neuLess">{`MP Regen: ${champ.stats.mpregen}`}</li>
-                                                            <li className="list-group-item neuLess">{`MP Regen/Level: ${champ.stats.mpregenperlevel}`}</li>
-                                                            <li className="list-group-item neuLess">{`Armor: ${champ.stats.armor}`}</li>
-                                                            <li className="list-group-item neuLess">{`Armor/Level: ${champ.stats.armorperlevel}`}</li>
-                                                            <li className="list-group-item neuLess">{`MR: ${champ.stats.spellblock}`}</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className="col-md-6">
-                                                        <ul className="list-group ">
-                                                            <li className="list-group-item neuLess">{`MR/Level: ${champ.stats.spellblockperlevel}`}</li>
-                                                            <li className="list-group-item neuLess">{`MS: ${champ.stats.movespeed}`}</li>
-                                                            <li className="list-group-item neuLess">{`Attack Range: ${champ.stats.attackrange}`}</li>
-                                                            <li className="list-group-item neuLess">{`Crit: ${champ.stats.crit}`}</li>
-                                                            <li className="list-group-item neuLess">{`Crit/Level: ${champ.stats.critperlevel}`}</li>
-                                                            <li className="list-group-item neuLess">{`AD: ${champ.stats.attackdamage}`}</li>
-                                                            <li className="list-group-item neuLess">{`AD/Level: ${champ.stats.attackdamageperlevel}`}</li>
-                                                            <li className="list-group-item neuLess">{`AS: ${champ.stats.attackspeed}`}</li>
-                                                            <li className="list-group-item neuLess">{`AS/Level: ${champ.stats.attackspeedperlevel}`}</li>
+                                                    <div className="col-md-12">
+                                                        <ul className="list-group">
+                                                            {Object.entries(champ.stats).map(([name, stat]) => 
+                                                                stat ? <li className="list-group-item neuLess">{`${name}: ${stat}`}</li>:null
+                                                            )}
                                                         </ul>
                                                     </div>
                                                 </div>
