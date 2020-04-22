@@ -145,7 +145,7 @@ const Home = () => {
                                             <div className="col-md-12 hidden" id={champ.name}>
                                                 <ul className="list-unstyled">
                                                     <li className="media">
-                                                        <img src={'http://ddragon.leagueoflegends.com/cdn/10.8.1/img/passive/' + champ.passive.image.full} className="mr-3" alt="..." />
+                                                        <img src={'https://ddragon.leagueoflegends.com/cdn/10.8.1/img/passive/' + champ.passive.image.full} className="mr-3" alt="..." />
                                                         <div className="media-body">
                                                             <h5 className="mt-0 mb-1">{champ.passive.name}</h5>
                                                             <p className="mt-0 mb-1">{champ.passive.description}</p>
